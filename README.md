@@ -1,4 +1,4 @@
-# Streem It Up #
+# Stream It Up #
 
 TODO Describe the plugin shortly here.
 

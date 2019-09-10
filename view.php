@@ -21,7 +21,7 @@
  * It also handles adding a course to the community block.
  * It also handles downloading a course template.
  *
- * @package    block_streemitup
+ * @package    block_streamitup
  * @copyright  2019 Devlion <info@devlion.co>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL
  * @copyright  (C) 1999 onwards Martin Dougiamas  http://dougiamas.com
@@ -35,16 +35,16 @@ $parentcourse = $DB->get_record('course', array('id' => $courseid), '*', MUST_EX
 
 $context = context_course::instance($courseid);
 $PAGE->set_course($parentcourse);
-$PAGE->set_url('/blocks/streemitup/view.php');
+$PAGE->set_url('/blocks/streamitup/view.php');
 $PAGE->set_heading($SITE->fullname);
 $PAGE->set_pagelayout('incourse');
-$PAGE->set_title(get_string('title', 'block_streemitup'));
-$PAGE->navbar->add(get_string('title', 'block_streemitup'));
+$PAGE->set_title(get_string('title', 'block_streamitup'));
+$PAGE->navbar->add(get_string('title', 'block_streamitup'));
 
-require_capability('block/streemitup:view', $context);
-$urlapi = new moodle_url('/blocks/streemitup/streemitupapi.php', array('courseid' => $courseid));
+require_capability('block/streamitup:view', $context);
+$urlapi = new moodle_url('/blocks/streamitup/streamitupapi.php', array('courseid' => $courseid));
 
 echo $OUTPUT->header();
-echo $OUTPUT->heading(get_string('title', 'block_streemitup'), 3, 'main');
-echo "<iframe  id='block_streemitup_videolist' src='" . $urlapi . "'></iframe>";
+echo $OUTPUT->heading(get_string('title', 'block_streamitup'), 3, 'main');
+echo "<iframe  id='block_streamitup_videolist' src='" . $urlapi . "'></iframe>";
 echo $OUTPUT->footer();

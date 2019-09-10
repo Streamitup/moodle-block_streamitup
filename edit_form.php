@@ -13,48 +13,43 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
-
 /**
- * Form for editing streemitup block instances.
+ * Form for editing block_streamitup block instances.
  *
- * @package     block_streemitup
- * @copyright   2019 Devlion <info@devlion.co>
- * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- */
-
-/**
- * Form for editing block_streemitup block instances.
- *
- * @package    block_streemitup
+ * @package    block_streamitup
  * @copyright  2019 Devlion <info@devlion.co>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
+require_once($CFG->dirroot . '/blocks/streamitup/lib.php');
 
-class block_streemitup_edit_form extends block_edit_form {
+class block_streamitup_edit_form extends block_edit_form {
 
     /**
-     * Extends the configuration form for block_streemitup.
+     * Extends the configuration form for block_streamitup.
      */
     protected function specific_definition($mform) {
 
         $mform->addElement('header', 'configheader', get_string('blocksettings', 'block'));
 
-        $mform->addElement('text', 'config_title', get_string('title', 'block_streemitup'));
-        $mform->setDefault('config_title', get_string('title', 'block_streemitup'));
+        $mform->addElement('text', 'config_title', get_string('title', 'block_streamitup'));
+        $mform->setDefault('config_title', get_string('title', 'block_streamitup'));
         $mform->setType('config_title', PARAM_TEXT);
 
-        $mform->addElement('text', 'config_url', get_string('defaulturl', 'block_streemitup'));
-        $mform->setType('config_url', PARAM_TEXT);
+        $contextoptions = array();
+        $contextoptions['iframe'] = get_string('iframe', 'block_streamitup');
+        $contextoptions['newtab'] = get_string('newtab', 'block_streamitup');
+        $mform->addElement('select', 'config_linktype', get_string('linktype', 'block_streamitup'), $contextoptions);
+        $mform->setDefault('config_linktype', 'iframe');
 
-        $mform->addElement('text', 'config_username', get_string('defaultusername', 'block_streemitup'));
+        $mform->addElement('text', 'config_username', get_string('defaultusername', 'block_streamitup'));
         $mform->setType('config_username', PARAM_TEXT);
 
-        $mform->addElement('text', 'config_password', get_string('defaultpassword', 'block_streemitup'));
+        $mform->addElement('passwordunmask', 'config_password', get_string('defaultpassword', 'block_streamitup'));
         $mform->setType('config_password', PARAM_TEXT);
 
-        $mform->addElement('text', 'config_defaultlesson', get_string('defaultlesson', 'block_streemitup'));
+        $mform->addElement('text', 'config_defaultlesson', get_string('defaultlesson', 'block_streamitup'));
         $mform->setType('config_defaultlesson', PARAM_TEXT);
         $mform->setDefault('config_defaultlesson', 'all_lessons');
     }

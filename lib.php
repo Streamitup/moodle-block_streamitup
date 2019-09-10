@@ -15,25 +15,30 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Plugin strings are defined here.
+ * The comments block helper functions and callbacks
  *
- * @package     block_streemitup
- * @category    string
- * @copyright   2019 Devlion <info@devlion.co>
- * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @package    block_streamitup
+ * @copyright  2019 Devlion <info@devlion.co>
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
+define('BLOCK_STREAMITUP_IFRANE', 'iframe');
+define('BLOCK_STREAMITUP_NEWTAB', 'newtab');
 
-$string['pluginname'] = 'Streamitup';
-$string['title'] = 'Streamitup';
-$string['configurationnotset'] = "Configurate block";
-
-$string['defaulturl'] = 'Link';
-$string['defaultusername'] = 'Course ID';
-$string['defaultpassword'] = 'Course Password';
-$string['defaultlesson'] = 'Lesson ID';
-$string['defaultlesson_desc'] = 'Lesson ID';
-
-$string['buttontitle'] = 'Watch Lesson';
-
+/**
+ * Get specific block instance
+ *
+ * @package  block_streamitup
+ *
+ * @param object $context
+ * @return object
+ */
+function block_streamitup_instance($context) {
+    global $DB;
+    $blockinstance = $DB->get_record('block_instances', ['parentcontextid' => $context->id, 'blockname' => 'streamitup']);
+    if (!empty($blockinstance)) {
+        return unserialize(base64_decode($blockinstance->configdata));
+    }
+    return null;
+}

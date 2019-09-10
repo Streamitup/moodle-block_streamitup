@@ -15,17 +15,28 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Plugin version and other meta-data are defined here.
+ * Plugin strings are defined here.
  *
  * @package     block_streamitup
+ * @category    string
  * @copyright   2019 Devlion <info@devlion.co>
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->component = 'block_streamitup';
-$plugin->release = '0.1.0';
-$plugin->version = 2019012011;
-$plugin->requires = 2018120300;
-$plugin->maturity = MATURITY_ALPHA;
+$string['pluginname'] = 'Streamitup';
+$string['title'] = 'Streamitup';
+$string['configurationnotset'] = "Configurate block";
+
+$string['defaulturl'] = 'Link';
+$string['defaulturl_desc'] = 'Link for streamitup';
+$string['defaultusername'] = 'Course ID';
+$string['defaultpassword'] = 'Course Password';
+$string['defaultlesson'] = 'Lesson ID';
+
+$string['buttontitle'] = 'Watch Lesson';
+$string['linktype'] = 'Link type';
+$string['iframe'] = 'Iframe';
+$string['newtab'] = 'New tab';
+

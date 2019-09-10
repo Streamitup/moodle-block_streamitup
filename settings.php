@@ -15,17 +15,22 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Plugin version and other meta-data are defined here.
+ * Plugin administration pages are defined here.
  *
- * @package     block_streamitup
+ * @package     block_streemitup
+ * @category    admin
  * @copyright   2019 Devlion <info@devlion.co>
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->component = 'block_streamitup';
-$plugin->release = '0.1.0';
-$plugin->version = 2019012011;
-$plugin->requires = 2018120300;
-$plugin->maturity = MATURITY_ALPHA;
+if ($ADMIN->fulltree) {
+
+    // Default username.
+    $setting = new admin_setting_configtext('block_streamitup/url',
+            new lang_string('defaulturl', 'block_streamitup'),
+            new lang_string('defaulturl_desc', 'block_streamitup'), '', PARAM_TEXT);
+    $settings->add($setting);
+
+}

@@ -21,7 +21,7 @@
  * It also handles adding a course to the community block.
  * It also handles downloading a course template.
  *
- * @package    block_streemitup
+ * @package    block_streamitup
  * @copyright  2019 Devlion <info@devlion.co>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL
  * @copyright  (C) 1999 onwards Martin Dougiamas  http://dougiamas.com
@@ -35,15 +35,15 @@ $parentcourse = $DB->get_record('course', array('id' => $courseid), '*', MUST_EX
 
 $context = context_course::instance($courseid);
 $PAGE->set_course($parentcourse);
-$PAGE->set_url('/blocks/streemitup/streemitupapi.php');
+$PAGE->set_url('/blocks/streamitup/streamitupapi.php');
 $PAGE->set_heading($SITE->fullname);
 $PAGE->set_pagelayout('embedded');
-$PAGE->set_title(get_string('title', 'block_streemitup'));
+$PAGE->set_title(get_string('title', 'block_streamitup'));
 
-require_capability('block/streemitup:view', $context);
+require_capability('block/streamitup:view', $context);
 
-$blockconfig = get_config('block_streemitup');
-$blockinstance = $DB->get_record('block_instances', ['parentcontextid' => $context->id, 'blockname' => 'streemitup']);
+$blockconfig = get_config('block_streamitup');
+$blockinstance = $DB->get_record('block_instances', ['parentcontextid' => $context->id, 'blockname' => 'streamitup']);
 if (!empty($blockinstance)) {
     $blockinstance = unserialize(base64_decode($blockinstance->configdata));
 }
@@ -54,14 +54,14 @@ $roles = get_roles_used_in_context($context);
 foreach ($roles as $role) {
     $currentrole = $role->shortname;
     switch ($currentrole) {
-        case "editingteacher":
-            $roleids[] = 2;
+        case "student":
+            $roleids[] = 0;
             break;
         case "teacher":
             $roleids[] = 1;
             break;
-        case "student":
-            $roleids[] = 0;
+        case "editingteacher":
+            $roleids[] = 2;
             break;
         default:
             $roleids[] = 4;
@@ -76,7 +76,7 @@ if (is_siteadmin()) {
 $currentrole = implode('#', $roleids);
 
 echo $OUTPUT->header();
-echo "<form id=\"gotomember\"  name=\"gotomember\" method=\"post\" action=\"$blockinstance->url\">
+echo "<form id=\"gotomember\"  name=\"gotomember\" method=\"post\" action=\"$blockconfig->url\">
 <input type=\"hidden\" name=\"lesson_url\" value=\"$blockinstance->defaultlesson\">
 <input type=\"hidden\" name=\"username\" value=\"$blockinstance->username\">
 <input type=\"hidden\" name=\"passwd\" value=\"$blockinstance->password\">

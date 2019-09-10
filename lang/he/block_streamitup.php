@@ -17,7 +17,7 @@
 /**
  * Plugin strings are defined here.
  *
- * @package     block_streemitup
+ * @package     block_streamitup
  * @category    string
  * @copyright   2019 Devlion <info@devlion.co>
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -36,3 +36,6 @@ $string['defaultpassword'] = 'סיסמא לקורס';
 $string['defaultlesson'] = 'מזהה לקורס';
 
 $string['buttontitle'] = 'צפייה בוידאו';
+$string['linktype'] = 'אופן תצוגה';
+$string['iframe'] = 'בדף';
+$string['newtab'] = 'חלון חדש';

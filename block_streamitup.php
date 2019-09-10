@@ -15,30 +15,31 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Block streemitup is defined here.
+ * Block streamitup is defined here.
  *
- * @package     block_streemitup
+ * @package     block_streamitup
  * @copyright   2019 Devlion <info@devlion.co>
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 /**
- * streemitup block.
+ * streamitup block.
  *
- * @package    block_streemitup
+ * @package    block_streamitup
  * @copyright  2019 Devlion <info@devlion.co>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 defined('MOODLE_INTERNAL') || die();
+require_once($CFG->dirroot . '/blocks/streamitup/lib.php');
 
-class block_streemitup extends block_base {
+class block_streamitup extends block_base {
 
     /**
      * Initializes class member variables.
      */
     public function init() {
         // Needed by Moodle to differentiate between blocks.
-        $this->title = get_string('pluginname', 'block_streemitup');
+        $this->title = get_string('pluginname', 'block_streamitup');
     }
 
     /**
@@ -62,8 +63,10 @@ class block_streemitup extends block_base {
         $this->content->icons = array();
         $this->content->footer = '';
 
-        if (empty($this->config->url) || empty($this->config->username) || empty($this->config->password)) {
-            $this->content->text = get_string('configurationnotset', 'block_streemitup');
+        $blockconfig = get_config('block_streamitup');
+
+        if (empty($blockconfig->url) || empty($this->config->username) || empty($this->config->password)) {
+            $this->content->text = get_string('configurationnotset', 'block_streamitup');
             return $this->content;
         }
 
@@ -71,15 +74,26 @@ class block_streemitup extends block_base {
             $this->content->text = $this->config->text;
         } else {
 
-            $redirecturl = new moodle_url('/blocks/streemitup/view.php',
-                    array('add' => true, 'courseid' => $this->page->course->id));
-            $imgsrc = new moodle_url('/blocks/streemitup/images/link.png');
+            $imgsrc = new moodle_url('/blocks/streamitup/images/link.png');
+            $buttontitle = get_string('buttontitle', 'block_streamitup');
+            switch ($this->config->linktype) {
+                case BLOCK_STREAMITUP_NEWTAB:
+                    $redirecturl = new moodle_url('/blocks/streamitup/streamitupapi.php',
+                            array('courseid' => $this->page->course->id));
+                    $text = html_writer::link($redirecturl,
+                            '<input type="image" src="' . $imgsrc . '" alt="' . $buttontitle . '" tutle="' . $buttontitle .
+                            '" border="0" value = button /></input>', ['target' => '_blank']);
 
-            $buttontitle = get_string('buttontitle', 'block_streemitup');
-            $text = html_writer::link($redirecturl,
-                    '<input type="image" src="' . $imgsrc . '" alt="' . $buttontitle . '" tutle="' . $buttontitle .
-                    '" border="0" value = button /></input>');
+                    break;
+                case BLOCK_STREAMITUP_IFRANE:
+                default:
+                    $redirecturl = new moodle_url('/blocks/streamitup/view.php',
+                            array('courseid' => $this->page->course->id));
+                    $text = html_writer::link($redirecturl,
+                            '<input type="image" src="' . $imgsrc . '" alt="' . $buttontitle . '" tutle="' . $buttontitle .
+                            '" border="0" value = button /></input>');
 
+            }
             $this->content->text = $text;
         }
 
@@ -95,7 +109,7 @@ class block_streemitup extends block_base {
 
         // Load user defined title and make sure it's never empty.
         if (empty($this->config->title)) {
-            $this->title = get_string('pluginname', 'block_streemitup');
+            $this->title = get_string('pluginname', 'block_streamitup');
         } else {
             $this->title = $this->config->title;
         }
@@ -107,7 +121,7 @@ class block_streemitup extends block_base {
      * @return bool True if the global configuration is enabled.
      */
     public function has_config() {
-        return false;
+        return true;
     }
 
     /**

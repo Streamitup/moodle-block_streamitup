@@ -15,9 +15,9 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Streemitup block access.
+ * streamitup block access.
  *
- * @package    block_streemitup
+ * @package    block_streamitup
  * @copyright   2019 Devlion <info@devlion.co>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -26,7 +26,7 @@ defined('MOODLE_INTERNAL') || die();
 
 $capabilities = array(
 
-        'block/streemitup:addinstance' => array(
+        'block/streamitup:addinstance' => array(
                 'riskbitmask' => RISK_SPAM | RISK_XSS,
 
                 'captype' => 'write',
@@ -39,7 +39,7 @@ $capabilities = array(
                 'clonepermissionsfrom' => 'moodle/site:manageblocks'
         ),
 
-        'block/streemitup:view' => array(
+        'block/streamitup:view' => array(
                 'riskbitmask' => RISK_SPAM | RISK_XSS,
 
                 'captype' => 'write',
