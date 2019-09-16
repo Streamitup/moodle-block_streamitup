@@ -37,6 +37,6 @@ $string['defaultlesson'] = 'Lesson ID';
 
 $string['buttontitle'] = 'Watch Lesson';
 $string['linktype'] = 'Link type';
-$string['iframe'] = 'Iframe';
-$string['newtab'] = 'New tab';
+$string['iframe'] = 'Open in course';
+$string['newtab'] = 'Open in new window';
 

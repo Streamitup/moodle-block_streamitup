@@ -76,24 +76,31 @@ class block_streamitup extends block_base {
 
             $imgsrc = new moodle_url('/blocks/streamitup/images/link.png');
             $buttontitle = get_string('buttontitle', 'block_streamitup');
-            switch ($this->config->linktype) {
-                case BLOCK_STREAMITUP_NEWTAB:
-                    $redirecturl = new moodle_url('/blocks/streamitup/streamitupapi.php',
-                            array('courseid' => $this->page->course->id));
-                    $text = html_writer::link($redirecturl,
-                            '<input type="image" src="' . $imgsrc . '" alt="' . $buttontitle . '" tutle="' . $buttontitle .
-                            '" border="0" value = button /></input>', ['target' => '_blank']);
 
-                    break;
-                case BLOCK_STREAMITUP_IFRANE:
-                default:
-                    $redirecturl = new moodle_url('/blocks/streamitup/view.php',
-                            array('courseid' => $this->page->course->id));
-                    $text = html_writer::link($redirecturl,
-                            '<input type="image" src="' . $imgsrc . '" alt="' . $buttontitle . '" tutle="' . $buttontitle .
-                            '" border="0" value = button /></input>');
+            $selecthtml = "<select class=\"custom-select\" id='block_streamitup_linktype_select'>
+                         <option value='" . BLOCK_STREAMITUP_NEWTAB . "'>" .
+                    get_string(BLOCK_STREAMITUP_NEWTAB, 'block_streamitup') . "</option>
+                         <option value='" . BLOCK_STREAMITUP_IFRANE . "'>" .
+                    get_string(BLOCK_STREAMITUP_IFRANE, 'block_streamitup') . "</option>
+                         </select>";
 
-            }
+            $text = $selecthtml . "<br>";
+            $redirecturl = new moodle_url('/blocks/streamitup/streamitupapi.php',
+                    array('courseid' => $this->page->course->id));
+            $text .= html_writer::link($redirecturl,
+                    '<input type="image" src="' . $imgsrc . '" alt="' . $buttontitle . '" tutle="' . $buttontitle .
+                    '" border="0" value = button /></input>',
+                    ['target' => '_blank', 'id' => 'block_streamitup_' . BLOCK_STREAMITUP_NEWTAB, 'style' => 'display:none;']);
+
+            $redirecturl = new moodle_url('/blocks/streamitup/view.php',
+                    array('courseid' => $this->page->course->id));
+            $text .= html_writer::link($redirecturl,
+                    '<input type="image" src="' . $imgsrc . '" alt="' . $buttontitle . '" tutle="' . $buttontitle .
+                    '" border="0" value = button /></input>',
+                    ['id' => 'block_streamitup_' . BLOCK_STREAMITUP_IFRANE, 'style' => 'display:none;']);
+
+            $this->page->requires->js_call_amd('block_streamitup/init', 'init',
+                    [$this->config->linktype, BLOCK_STREAMITUP_IFRANE, BLOCK_STREAMITUP_NEWTAB]);
             $this->content->text = $text;
         }
 
