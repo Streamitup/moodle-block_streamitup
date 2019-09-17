@@ -39,3 +39,6 @@ $string['buttontitle'] = 'צפייה בוידאו';
 $string['linktype'] = 'אופן תצוגה';
 $string['iframe'] = 'בדף';
 $string['newtab'] = 'חלון חדש';
+$string['imageurl'] = 'קישור לתמונה בכפתור';
+$string['imageurl_desc'] = 'קישור לתמונה בכפתור';
+$string['dropdowntext'] = 'פתח';

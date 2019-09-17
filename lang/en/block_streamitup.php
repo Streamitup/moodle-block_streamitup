@@ -37,6 +37,10 @@ $string['defaultlesson'] = 'Lesson ID';
 
 $string['buttontitle'] = 'Watch Lesson';
 $string['linktype'] = 'Link type';
-$string['iframe'] = 'Open in course';
-$string['newtab'] = 'Open in new window';
+$string['iframe'] = 'In course';
+$string['newtab'] = 'In new window';
+$string['imageurl'] = 'Url to image button';
+$string['imageurl_desc'] = 'Default Image url must be seted';
+
+$string['dropdowntext'] = 'Open';
 

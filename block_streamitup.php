@@ -75,9 +75,14 @@ class block_streamitup extends block_base {
         } else {
 
             $imgsrc = new moodle_url('/blocks/streamitup/images/link.png');
-            $buttontitle = get_string('buttontitle', 'block_streamitup');
+            if (!empty($blockconfig->imageurl)) {
+                $imgsrc = $blockconfig->imageurl;
+            }
 
-            $selecthtml = "<select class=\"custom-select\" id='block_streamitup_linktype_select'>
+            $buttontitle = get_string('buttontitle', 'block_streamitup');
+            $selecthtml = get_string('dropdowntext', 'block_streamitup');
+
+            $selecthtml .= "  <select class=\"custom-select\" id='block_streamitup_linktype_select'>
                          <option value='" . BLOCK_STREAMITUP_NEWTAB . "'>" .
                     get_string(BLOCK_STREAMITUP_NEWTAB, 'block_streamitup') . "</option>
                          <option value='" . BLOCK_STREAMITUP_IFRANE . "'>" .

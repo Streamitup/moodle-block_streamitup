@@ -33,4 +33,10 @@ if ($ADMIN->fulltree) {
             new lang_string('defaulturl_desc', 'block_streamitup'), '', PARAM_TEXT);
     $settings->add($setting);
 
+    // Default username.
+    $setting = new admin_setting_configtext('block_streamitup/imageurl',
+            new lang_string('imageurl', 'block_streamitup'),
+            new lang_string('imageurl_desc', 'block_streamitup'), '', PARAM_TEXT);
+    $settings->add($setting);
+
 }
