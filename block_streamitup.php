@@ -80,6 +80,17 @@ class block_streamitup extends block_base {
             }
 
             $buttontitle = get_string('buttontitle', 'block_streamitup');
+            $ismobile = core_useragent::get_device_type() == core_useragent::DEVICETYPE_MOBILE ? 1 : 0;
+            if ($ismobile) {
+                $redirecturl = new moodle_url('/blocks/streamitup/streamitupapi.php',
+                        array('courseid' => $this->page->course->id));
+                $text = html_writer::link($redirecturl,
+                        '<input type="image" src="' . $imgsrc . '" alt="' . $buttontitle . '" tutle="' . $buttontitle .
+                        '" border="0" value = button /></input>',
+                        ['target' => '_blank', 'id' => 'block_streamitup_' . BLOCK_STREAMITUP_NEWTAB]);
+                $this->content->text = $text;
+                return $this->content;
+            }
             $selecthtml = get_string('dropdowntext', 'block_streamitup');
 
             $selecthtml .= "  <select class=\"custom-select\" id='block_streamitup_linktype_select'>
