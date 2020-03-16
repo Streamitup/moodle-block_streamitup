@@ -81,7 +81,7 @@ echo "<form id=\"gotomember\"  name=\"gotomember\" method=\"post\" action=\"$blo
 <input type=\"hidden\" name=\"username\" value=\"$blockinstance->username\">
 <input type=\"hidden\" name=\"passwd\" value=\"$blockinstance->password\">
 <input type=\"hidden\" name=\"studentname\" value=\"$USER->username\">
-<input type=\"hidden\" name=\"permission\" value=\"$currentrole\">
+<input type=\"hidden\" name=\"user_role\" value=\"$currentrole\">
 <input type=\"image\" src=\"\" alt=\"\" border=\"0\" value = submit /></input>
 </form>
 <script>
