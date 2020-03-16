@@ -50,7 +50,8 @@ if (!empty($blockinstance)) {
 
 $roleids = [];
 
-$roles = get_roles_used_in_context($context);
+$roles = get_user_roles($context, 0, false);
+
 foreach ($roles as $role) {
     $currentrole = $role->shortname;
     switch ($currentrole) {
